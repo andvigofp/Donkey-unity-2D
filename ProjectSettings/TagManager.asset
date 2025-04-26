@@ -6,11 +6,20 @@ TagManager:
   tags:
   - Obstacle
   - Objective
+<<<<<<< HEAD
+=======
+  - Martillo
+  - Barril
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+<<<<<<< HEAD
   - 
+=======
+  - conMartillo
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
   - Water
   - UI
   - Ground

@@ -214,6 +214,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mario
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 5532066506369374959, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.75
@@ -221,6 +222,23 @@ PrefabInstance:
     - target: {fileID: 5532066506369374959, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
       propertyPath: m_LocalPosition.y
       value: -5.4
+=======
+    - target: {fileID: 3791517181410668589, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791517181410668589, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532066506369374959, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532066506369374959, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.419
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
       objectReference: {fileID: 0}
     - target: {fileID: 5532066506369374959, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -254,11 +272,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+=======
+    - target: {fileID: 7053423278124442559, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: climbSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3efe5f257aed6f242be943871d6b507f, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3791517181410668589, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 245167177}
+  m_SourcePrefab: {fileID: 100100000, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+--- !u!1 &245167176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3791517181410668589, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+  m_PrefabInstance: {fileID: 245167175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &245167177
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245167176}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f25796a91a51ec740a9c57aaf58a3bb4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
 --- !u!4 &319574953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 633811104800140917, guid: f52e4497d9b633c49a30e59d39c5a365, type: 3}
@@ -1300,9 +1360,16 @@ GameObject:
   - component: {fileID: 1260291528}
   - component: {fileID: 1260291527}
   - component: {fileID: 1260291529}
+<<<<<<< HEAD
   m_Layer: 0
   m_Name: Barrel Spawner
   m_TagString: Untagged
+=======
+  - component: {fileID: 1260291530}
+  m_Layer: 0
+  m_Name: Barrel Spawner
+  m_TagString: Barril
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1350,6 +1417,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+<<<<<<< HEAD
+=======
+--- !u!58 &1260291530
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260291526}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
 --- !u!4 &1300883950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5000852349525809386, guid: f38bc44ec9d7fec4a9d1f64660b28705, type: 3}
@@ -2037,6 +2143,119 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5000852349525809386, guid: f38bc44ec9d7fec4a9d1f64660b28705, type: 3}
   m_PrefabInstance: {fileID: 478575312}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!1001 &7764395495269828786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3847078956317859537, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928787557047719213, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594752523116625634, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_Name
+      value: martillo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594752523116625634, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      propertyPath: m_TagString
+      value: Martillo
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3847078956317859537, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8594752523116625634, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7764395495269828788}
+  m_SourcePrefab: {fileID: 100100000, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+--- !u!1 &7764395495269828787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8594752523116625634, guid: 5778896e42955ee4b8be0b1f875219cb, type: 3}
+  m_PrefabInstance: {fileID: 7764395495269828786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &7764395495269828788
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764395495269828787}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.375
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2051,3 +2270,7 @@ SceneRoots:
   - {fileID: 1748179081}
   - {fileID: 624004057}
   - {fileID: 1455229171}
+<<<<<<< HEAD
+=======
+  - {fileID: 7764395495269828786}
+>>>>>>> a8d4f0d (Añadido animaciones de correr, saltar y martillo, falta las animaciones, cambio el scrip player para las aniamciones, romper barriles)
