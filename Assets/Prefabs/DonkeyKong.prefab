@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3086072796642626147}
   - component: {fileID: 2022916155100685082}
   - component: {fileID: 5061059248232760932}
+  - component: {fileID: 4954163717267403060}
   m_Layer: 0
   m_Name: DonkeyKong
   m_TagString: Obstacle
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.5, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &4954163717267403060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732456873248335480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d95ca5a71401249a7115003acb9525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

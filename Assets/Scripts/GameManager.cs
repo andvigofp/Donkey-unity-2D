@@ -1,90 +1,59 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    private int level;
-    private int lives;
-    private int score;
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        // Configuración del Singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Evitar duplicados
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persiste entre escenas
+        }
+    }
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject); // Persiste a través de escenas
-        NewGame(); // Inicia un nuevo juego
-    }
-
-    private void NewGame()
-    {
-        lives = 3; // Reinicia las vidas
-        score = 0; // Reinicia el puntaje
-
-        LoadLevel(1); // Comienza desde el nivel 1
-    }
-
-    private void LoadLevel(int index)
-    {
-        level = index;
-
-        Camera camera = Camera.main;
-        if (camera != null)
+        // Si la escena actual es "Preload", inicia la transición automática a Level1
+        if (SceneManager.GetActiveScene().name == "Preload")
         {
-            camera.cullingMask = -1; // Asegura que todas las capas sean renderizadas
+            StartCoroutine(EsperarYCargarNivel(1)); // Cargar Level1 después de unos segundos
         }
-        else
-        {
-            Debug.LogWarning("No se encontró ninguna cámara principal en la escena."); // Manejo del caso
-        }
-
-        Invoke(nameof(LoadScene), 1f); // Carga la escena con retraso
     }
 
-    private void LoadScene()
+    private IEnumerator EsperarYCargarNivel(int index)
     {
-        if (level >= SceneManager.sceneCountInBuildSettings)
+        yield return new WaitForSeconds(2f); // Esperar 2 segundos antes de cambiar
+        LoadLevel(index); // Cargar Level1
+    }
+
+    public void LoadLevel(int index)
+    {
+        if (index >= SceneManager.sceneCountInBuildSettings)
         {
             Debug.LogError("El nivel solicitado está fuera de los límites. Reiniciando al nivel 1.");
-            level = 1; // Reinicia al nivel 1 si el índice está fuera de los límites
+            index = 0; // Reinicia al primer nivel si el índice está fuera de los límites
         }
 
-        SceneManager.LoadScene(level); // Carga la escena actual
+        SceneManager.LoadScene(index);
     }
 
-    public void LevelComplete()
+    public void RestartLevel()
     {
-        score += 1000; // Incrementa el puntaje al completar un nivel
-        Debug.Log($"Nivel completado. Puntaje actual: {score}");
-
-        int nextLevel = level + 1;
-
-        if (nextLevel < SceneManager.sceneCountInBuildSettings)
-        {
-            LoadLevel(nextLevel); // Carga el siguiente nivel
-        }
-        else
-        {
-            Debug.Log("¡Has completado todos los niveles! Reiniciando...");
-            LoadLevel(1); // Reinicia al nivel 1 si no hay más niveles
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LevelFailed()
+    public void LoadNextLevel()
     {
-        lives--; // Reduce las vidas
-        Debug.Log($"Nivel fallido. Vidas restantes: {lives}");
-
-        if (lives <= 0)
-        {
-            Debug.Log("Se han acabado las vidas. Iniciando un nuevo juego...");
-            NewGame(); // Reinicia el juego si se acaban las vidas
-        }
-        else
-        {
-            LoadLevel(level); // Reintenta el nivel actual
-        }
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        LoadLevel(currentIndex + 1); // Carga el siguiente nivel
     }
-
-    // Métodos adicionales para depuración o UI
-    public int GetLives() => lives;
-    public int GetScore() => score;
-    public int GetLevel() => level;
 }
