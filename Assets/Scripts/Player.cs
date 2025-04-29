@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Rigidbody2D playerRigidbody;
     private Collider2D playerCollider;
+    private EfectosSonido efectosSonido;
 
     [Header("Animaciones")]
     [SerializeField] private Sprite[] runSprites;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     [Header("Estado")]
     private bool grounded;
     private bool climbing;
+    private bool estabaEnEscalera;
 
     [Header("Respawn")]
     private Vector3 puntoDeInicio;
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        efectosSonido = GetComponent<EfectosSonido>();
 
         if (spawner == null && Spawner.Instance != null)
         {
@@ -69,10 +72,15 @@ public class Player : MonoBehaviour
         if (climbing)
         {
             direction.y = Input.GetAxis("Vertical") * moveSpeed;
+            if (!estabaEnEscalera && Mathf.Abs(direction.y) > 0.1f)
+            {
+                efectosSonido.ReproducirEscalera();
+            }
         }
         else if (grounded && Input.GetButtonDown("Jump"))
         {
             direction = Vector2.up * jumpStrength;
+            efectosSonido.ReproducirSalto();
         }
         else
         {
@@ -99,6 +107,8 @@ public class Player : MonoBehaviour
         anim.SetBool("jump", !grounded && !climbing);
         anim.SetBool("run", grounded && Mathf.Abs(direction.x) > 0.1f);
         anim.SetBool("hammer", tieneMartillo);
+
+        estabaEnEscalera = climbing;
     }
 
     private void FixedUpdate()
@@ -144,6 +154,7 @@ public class Player : MonoBehaviour
             anim.SetBool("hammer", true);
             Destroy(collision.gameObject);
             tieneMartillo = true;
+            efectosSonido.ReproducirMartillo();
             StartCoroutine(TemporizadorMartillo(5f));
         }
     }

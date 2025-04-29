@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7053423278124442559}
   - component: {fileID: 1137080945090425884}
   - component: {fileID: 2567655270315494104}
+  - component: {fileID: 2991676726124419203}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -213,3 +214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d770265be65f8a4aa6fd799908ee84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2991676726124419203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791517181410668589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9409006f257652e4898176d436c4d242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonidoSalto: {fileID: 8300000, guid: ebe457818b2cd334c96935b609da0479, type: 3}
+  sonidoMartillo: {fileID: 8300000, guid: 71d9d4d4b801d294da0af0d123eee552, type: 3}
+  sonidoEscalera: {fileID: 8300000, guid: e3b5522c4186cfc46b245a9d4ced7735, type: 3}
