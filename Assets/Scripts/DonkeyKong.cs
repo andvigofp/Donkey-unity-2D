@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class DonkeyKong : MonoBehaviour
 {
-    private Vector3 posicionInicial;
+    private Animator anim;
 
     private void Awake()
     {
-        posicionInicial = transform.position; // Guardar la posición inicial de Donkey Kong
+        anim = GetComponent<Animator>(); // Obtener referencia al Animator
     }
 
-    public void ReiniciarDonkeyKong()
+    private void Start()
     {
-        transform.position = posicionInicial; // Restaurar la posición original
-        gameObject.SetActive(true); // Asegurar que está activado en la escena
+        anim.SetBool("movement", true); // Activar la animación al inicio
 
-        Debug.Log("Donkey Kong reiniciado correctamente.");
+        // Opcional: desactivar "movement" después de unos segundos para que no se repita
+        Invoke("DetenerAnimacion", 2f); // Se detendrá en 2 segundos
+    }
+
+    private void DetenerAnimacion()
+    {
+        anim.SetBool("movement", false); // Detener la animación
     }
 }
