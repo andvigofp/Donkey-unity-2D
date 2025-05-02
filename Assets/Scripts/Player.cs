@@ -42,6 +42,11 @@ public class Player : MonoBehaviour
 
     private Collider2D[] results;
 
+    [Header("Puntos")]
+    private int puntos = 0; // Variable para almacenar los puntos
+    public static event System.Action<int> OnPuntosCambiados;
+
+
     private void Awake()
     {
         results = new Collider2D[10];
@@ -58,11 +63,15 @@ public class Player : MonoBehaviour
 
         vidaActual = vidaMaxima;
         puntoDeInicio = transform.position;
+
+        // Recuperar los puntos guardados
+        puntos = PlayerPrefs.GetInt("PuntosGuardados", 0);
     }
 
     private void Start()
     {
         OnVidasCambiadas?.Invoke(vidaActual, vidaMaxima);
+        OnPuntosCambiados?.Invoke(puntos);
     }
 
     private void Update()
@@ -111,9 +120,21 @@ public class Player : MonoBehaviour
         estabaEnEscalera = climbing;
     }
 
+    public void SumarPuntos(int cantidad)
+    {
+        puntos += cantidad;
+        PlayerPrefs.SetInt("PuntosGuardados", puntos);
+        OnPuntosCambiados?.Invoke(puntos);
+    }
+
     private void FixedUpdate()
     {
         playerRigidbody.MovePosition(playerRigidbody.position + direction * Time.fixedDeltaTime);
+    }
+
+    public void PasarDeNivel()
+    {
+        PlayerPrefs.SetInt("PuntosGuardados", puntos);
     }
 
     private void CheckCollision()
@@ -176,7 +197,12 @@ public class Player : MonoBehaviour
 
             if (vidaActual <= 0)
             {
-                Respawn(true); // Respawn con vidas restauradas
+                if (!anim.GetBool("dead")) // Evitar que se ejecute múltiples veces
+                {
+                    anim.SetBool("dead", true); // Activar animación de muerte
+                    Time.timeScale = 0f; // PAUSAR el juego completamente
+                    StartCoroutine(EsperarGameOver());
+                }
             }
             else
             {
@@ -184,6 +210,17 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+
+
+    private IEnumerator EsperarGameOver()
+    {
+        yield return new WaitForSecondsRealtime(2f); // Esperar animación ignorando la pausa
+        Time.timeScale = 1f; // Restaurar el tiempo antes de Game Over
+        GameOver.Instance.MostrarGameOver(puntos); // Mostrar el menú de Game Over
+    }
+
+
 
 
     public void Respawn(bool restaurarVidas)
@@ -197,6 +234,7 @@ public class Player : MonoBehaviour
         }
 
         transform.position = puntoDeInicio;
+        PlayerPrefs.SetInt("PuntosGuardados", puntos);
         Debug.Log("Jugador respawneado al punto de inicio.");
 
         if (spawner != null)
