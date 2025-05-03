@@ -4202,7 +4202,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2040383545}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: SalirJuego
+        m_MethodName: Salir
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
