@@ -197,11 +197,11 @@ public class Player : MonoBehaviour
 
             if (vidaActual <= 0)
             {
-                if (!anim.GetBool("dead")) // Evitar que se ejecute múltiples veces
+                if (!anim.GetBool("dead")) // Evitar múltiples ejecuciones
                 {
+                    Debug.Log("Activando animación de muerte...");
                     anim.SetBool("dead", true); // Activar animación de muerte
-                    Time.timeScale = 0f; // PAUSAR el juego completamente
-                    StartCoroutine(EsperarGameOver());
+                    StartCoroutine(EsperarGameOver()); // Esperar antes de mostrar Game Over
                 }
             }
             else
@@ -212,11 +212,20 @@ public class Player : MonoBehaviour
     }
 
 
-
     private IEnumerator EsperarGameOver()
     {
-        yield return new WaitForSecondsRealtime(2f); // Esperar animación ignorando la pausa
-        Time.timeScale = 1f; // Restaurar el tiempo antes de Game Over
+        Debug.Log("Esperando que la animación de muerte inicie...");
+
+        // 🔹 Esperar hasta que la animación "Dead" se active en el Animator
+        yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("dead"));
+
+        Debug.Log("Animación de muerte iniciada, esperando su duración...");
+
+        yield return new WaitForSeconds(2f); // 🔹 Esperar manualmente 2 segundos después de la animación
+
+        Debug.Log("Animación de muerte terminada, activando Game Over...");
+
+        Time.timeScale = 0f; // Pausar el juego
         GameOver.Instance.MostrarGameOver(puntos); // Mostrar el menú de Game Over
     }
 
