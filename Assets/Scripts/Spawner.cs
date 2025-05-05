@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-    public static Spawner Instance { get; private set; } // Declaración correcta del Singleton
+    public static Spawner Instance { get; private set; } // DeclaraciÃ³n correcta del Singleton
 
     public GameObject prefab;
     public float minTime = 2f;
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Evitar múltiples instancias si ya existe una
+            Destroy(gameObject); // Evitar mÃºltiples instancias si ya existe una
         }
     }
 

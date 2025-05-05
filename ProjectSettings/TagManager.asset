@@ -8,6 +8,9 @@ TagManager:
   - Objective
   - Martillo
   - Barril
+  - InvisibleWall
+  - Ladder
+  - Ground
   layers:
   - Default
   - TransparentFX

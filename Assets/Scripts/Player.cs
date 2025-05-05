@@ -46,6 +46,10 @@ public class Player : MonoBehaviour
     private int puntos = 0; // Variable para almacenar los puntos
     public static event System.Action<int> OnPuntosCambiados;
 
+    [Header("Spawner de fuego")]
+    [SerializeField] private BarrelFireSpawner spawnerFire; // Asegúrate de asignarlo en el Inspector
+
+
 
     private void Awake()
     {
@@ -207,7 +211,9 @@ public class Player : MonoBehaviour
             else
             {
                 Respawn(false); // Respawn sin restaurar vidas
+
             }
+
         }
     }
 
