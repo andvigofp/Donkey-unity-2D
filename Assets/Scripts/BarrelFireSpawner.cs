@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class BarrelFireSpawner : MonoBehaviour
 {
@@ -7,25 +8,47 @@ public class BarrelFireSpawner : MonoBehaviour
     public float minTime = 2f;
     public float maxTime = 4f;
     public float fireBallSpeed = 5f;
+    public float tiempoEntreBolas = 3f; // Tiempo mínimo entre cada bola de fuego
+
+    private GameObject currentBarril; // Almacenar el barril activo
+    private bool puedeGenerar = true; // Controlar si se puede generar una nueva bola
 
     private void Start()
     {
-        Invoke(nameof(SpawnBarril), Random.Range(minTime, maxTime));
+        StartCoroutine(SpawnBarriles());
+    }
+
+    private IEnumerator SpawnBarriles()
+    {
+        while (true) // Bucle infinito para generar barriles
+        {
+            yield return new WaitForSeconds(Random.Range(minTime, maxTime)); // Esperar antes de generar barril
+
+            if (currentBarril == null) // Solo generar un barril si no hay otro activo
+            {
+                SpawnBarril();
+            }
+        }
     }
 
     private void SpawnBarril()
     {
-        Debug.Log("Generando barril con bola de fuego...");
+        Debug.Log("🔥 Generando barril con bola de fuego...");
+        currentBarril = Instantiate(barrilPrefab, transform.position, Quaternion.identity);
 
-        GameObject barril = Instantiate(barrilPrefab, transform.position, Quaternion.identity);
-
-        Invoke(nameof(SpawnFireBallFromBarril), Random.Range(2f, 5f)); // Esperar un tiempo antes de lanzar bola de fuego
+        if (puedeGenerar)
+        {
+            StartCoroutine(SpawnFireBallFromBarril());
+        }
     }
 
-    private void SpawnFireBallFromBarril()
+    private IEnumerator SpawnFireBallFromBarril()
     {
-        Debug.Log("Liberando bola de fuego desde barril!");
+        puedeGenerar = false; // Bloquear generación de más bolas de fuego
 
+        yield return new WaitForSeconds(tiempoEntreBolas); // Esperar antes de lanzar bola de fuego
+
+        Debug.Log("🔥 Liberando bola de fuego desde barril!");
         GameObject fireBall = Instantiate(fireBallPrefab, transform.position, Quaternion.identity);
         fireBall.SetActive(true);
 
@@ -35,6 +58,11 @@ public class BarrelFireSpawner : MonoBehaviour
             rb.linearVelocity = Vector2.right * fireBallSpeed;
         }
 
-        Invoke(nameof(SpawnBarril), Random.Range(minTime, maxTime)); // Volver a generar otro barril después de un tiempo
+        puedeGenerar = true; // Permitir generar otra bola después del tiempo establecido
+
+        // Cuando el barril ya lanzó la bola, eliminarlo
+        Destroy(currentBarril, 1f); // Destruir barril después de 1 segundo
+        currentBarril = null; // Reiniciar la referencia del barril
     }
 }
+

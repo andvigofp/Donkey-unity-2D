@@ -1758,6 +1758,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1194408995570624667, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18106793
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194408995570624667, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.18106793
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194408995570624667, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.18490559
+      objectReference: {fileID: 0}
     - target: {fileID: 4156873932622089251, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1836,6 +1848,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156873932622089251, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673380850753355587, guid: 994cdf8f13215614e93758c0555f0bbd, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
