@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class BarrelFire : MonoBehaviour
 {
-    private GameObject fireBall; // Referencia a la bola de fuego dentro del barril
+    public GameObject fireBallPrefab;
+    public float tiempoAntesDeDisparar = 2f;
+    public float fireBallSpeed = 5f;
 
-    public void AsignarBolaDeFuego(GameObject bola)
+    private void Start()
     {
-        fireBall = bola; // Guardamos la referencia de la bola de fuego
+        StartCoroutine(DispararBolaDeFuego());
     }
 
-    public void Explode()
+    private IEnumerator DispararBolaDeFuego()
     {
-        Debug.Log("¡Barril explotando!");
+        yield return new WaitForSeconds(tiempoAntesDeDisparar);
 
-        // Liberar la bola de fuego antes de destruir el barril
-        if (fireBall != null)
+        // Crear bola de fuego
+        GameObject fireBall = Instantiate(fireBallPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rb = fireBall.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            fireBall.transform.parent = null; // Sacar la bola del barril
-            fireBall.SetActive(true);
-            fireBall.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
+            rb.linearVelocity = Vector2.right * fireBallSpeed;
         }
 
-        Destroy(gameObject); // Destruir el barril
+        Destroy(fireBall, 5f); // Opcional
+        Destroy(gameObject, 1f); // Destruir barril después de lanzar
     }
 }
-

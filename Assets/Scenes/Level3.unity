@@ -1281,6 +1281,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1256708716654745578, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: fireBallSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1256708716654745578, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: tiempoAntesDeDisparar
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2657561399287744805, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.65
@@ -1322,12 +1330,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: tiempoEntreBolas
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7609800830746199802, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: m_Name
       value: barril_fuego
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609800830746199802, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1591,6 +1607,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1256708716654745578, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: fireBallSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1256708716654745578, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: tiempoAntesDeDisparar
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2657561399287744805, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.85
@@ -1632,12 +1656,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: maxTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: minTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: tiempoEntreBolas
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7609800830746199802, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: m_Name
       value: barril_fuego
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609800830746199802, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2329,6 +2365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 118634571084152688, guid: bd002f7d1a6c13d43955892aedf86230, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 875412187092232868, guid: bd002f7d1a6c13d43955892aedf86230, type: 3}
       propertyPath: speed
       value: 7
@@ -2697,11 +2737,11 @@ PrefabInstance:
     - target: {fileID: 3324791264084298230, guid: 77767b6f42a1d954098edcbc13476502, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: d7a391e34bc9cb349b15394997d2fb53, type: 3}
+      objectReference: {fileID: 8300000, guid: a9f9feaad0b65b84184acc55398ae5bd, type: 3}
     - target: {fileID: 3324791264084298230, guid: 77767b6f42a1d954098edcbc13476502, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: d7a391e34bc9cb349b15394997d2fb53, type: 3}
+      objectReference: {fileID: 8300000, guid: a9f9feaad0b65b84184acc55398ae5bd, type: 3}
     - target: {fileID: 6887446470395330495, guid: 77767b6f42a1d954098edcbc13476502, type: 3}
       propertyPath: m_Name
       value: Audio
