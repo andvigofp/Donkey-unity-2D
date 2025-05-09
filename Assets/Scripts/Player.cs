@@ -116,10 +116,25 @@ public class Player : MonoBehaviour
             transform.localScale = tieneMartillo ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
         }
 
-        anim.SetBool("climbing", climbing);
-        anim.SetBool("jump", !grounded && !climbing);
-        anim.SetBool("run", grounded && Mathf.Abs(direction.x) > 0.1f);
-        anim.SetBool("hammer", tieneMartillo);
+        //anim.SetBool("climbing", climbing);
+        //anim.SetBool("jump", !grounded && !climbing);
+        //anim.SetBool("run", grounded && Mathf.Abs(direction.x) > 0.1f);
+
+        // 🔹 Si tiene el martillo, activar la animación sin importar el estado
+        if (tieneMartillo)
+        {
+            anim.SetBool("hammer", true);
+            anim.SetBool("run", false);
+            anim.SetBool("jump", false);
+            anim.SetBool("climbing", false);
+        }
+        else
+        {
+            anim.SetBool("hammer", false);
+            anim.SetBool("climbing", climbing);
+            anim.SetBool("jump", !grounded && !climbing);
+            anim.SetBool("run", grounded && Mathf.Abs(direction.x) > 0.1f);
+        }
 
         estabaEnEscalera = climbing;
     }
@@ -205,17 +220,29 @@ public class Player : MonoBehaviour
                 {
                     Debug.Log("Activando animación de muerte...");
                     anim.SetBool("dead", true); // Activar animación de muerte
+
+                    // Desactivar todas las animaciones
+                    anim.SetBool("run", false);
+                    anim.SetBool("jump", false);
+                    anim.SetBool("climbing", false);
+                    anim.SetBool("hammer", false);
+
+                    // Desactivar el movimiento
+                    moveSpeed = 0f;
+                    jumpStrength = 0f;
+                    direction = Vector2.zero;
+                    playerRigidbody.linearVelocity = Vector2.zero;
+
                     StartCoroutine(EsperarGameOver()); // Esperar antes de mostrar Game Over
                 }
             }
             else
             {
                 Respawn(false); // Respawn sin restaurar vidas
-
             }
-
         }
     }
+
 
 
     private IEnumerator EsperarGameOver()
@@ -234,6 +261,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 0f; // Pausar el juego
         GameOver.Instance.MostrarGameOver(puntos); // Mostrar el menú de Game Over
     }
+
 
 
 
@@ -264,13 +292,15 @@ public class Player : MonoBehaviour
         if (tieneMartillo && collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(collision.gameObject);
-            Debug.Log("Barril destruido!");
+            SumarPuntos(100); // Sumar puntos por enemigo eliminado
+            Debug.Log($"Enemigo {collision.gameObject.name} destruido! Puntos sumados: 100");
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             RecibirDanio(1);
         }
     }
+
 
     private void OnDrawGizmos()
     {
