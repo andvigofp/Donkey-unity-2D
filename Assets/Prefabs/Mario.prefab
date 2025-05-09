@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3082fda2f54685419702d66c125a604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 3
+  vidaMaxima: 5
   runSprites:
   - {fileID: 21300000, guid: 3efe5f257aed6f242be943871d6b507f, type: 3}
   - {fileID: 21300000, guid: 943b6d42bce38a848b8f664d0b40895c, type: 3}
@@ -180,6 +180,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpStrength: 4
   spawner: {fileID: 1200980556330727081, guid: bd002f7d1a6c13d43955892aedf86230, type: 3}
+  spawnerFire: {fileID: 0}
 --- !u!95 &1137080945090425884
 Animator:
   serializedVersion: 7
