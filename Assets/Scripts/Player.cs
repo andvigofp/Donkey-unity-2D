@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -49,7 +50,10 @@ public class Player : MonoBehaviour
     [Header("Spawner de fuego")]
     [SerializeField] private BarrelFireSpawner spawnerFire; // Asegúrate de asignarlo en el Inspector
 
+    public TMP_Text numeroPuntosTexto; // Referencia al texto en el Canvas
 
+    private bool invulnerable = false;
+    public float tiempoInvulnerabilidad = 1.0f; // 1 segundo de invulnerabilidad
 
     private void Awake()
     {
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour
     {
         OnVidasCambiadas?.Invoke(vidaActual, vidaMaxima);
         OnPuntosCambiados?.Invoke(puntos);
+        ActualizarTextoPuntos(); // Mostrar puntos al inicio
     }
 
     private void Update()
@@ -144,7 +149,29 @@ public class Player : MonoBehaviour
         puntos += cantidad;
         PlayerPrefs.SetInt("PuntosGuardados", puntos);
         OnPuntosCambiados?.Invoke(puntos);
+        Debug.Log($"Puntos actuales: {puntos}"); // Verificar si los puntos se están sumando
+        ActualizarTextoPuntos(); // Actualizar el nuevo texto en el nivel
+
+        // También actualizar los puntos en Game Over
+        if (GameOver.Instance != null)
+        {
+            GameOver.Instance.ActualizarPuntosGameOver(puntos);
+        }
     }
+
+
+    private void ActualizarTextoPuntos()
+    {
+        if (numeroPuntosTexto != null)
+        {
+            numeroPuntosTexto.text = puntos.ToString(); // Solo actualizar el número
+        }
+        else
+        {
+            Debug.LogError("NumeroPuntosTexto no está asignado en el Inspector.");
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -201,49 +228,78 @@ public class Player : MonoBehaviour
 
     private IEnumerator TemporizadorMartillo(float duracion)
     {
-        yield return new WaitForSeconds(duracion);
+        tieneMartillo = true;
+        anim.SetBool("hammer", true);
+
+        float tiempoRestante = duracion;
+        bool parpadeando = false;
+
+        while (tiempoRestante > 0)
+        {
+            if (tiempoRestante <= 2f) // 🔹 Cuando queden 2 segundos, empieza a parpadear
+            {
+                parpadeando = !parpadeando;
+                spriteRenderer.color = parpadeando ? new Color(1f, 1f, 1f, 0.5f) : new Color(1f, 1f, 1f, 1f);
+            }
+
+            yield return new WaitForSeconds(0.2f); // Cambia cada 0.2 segundos
+            tiempoRestante -= 0.2f;
+        }
+
+        // Restaurar estado normal
         tieneMartillo = false;
         anim.SetBool("hammer", false);
+        spriteRenderer.color = new Color(1f, 1f, 1f, 1f); // Restaurar color normal
     }
+
 
     public void RecibirDanio(int cantidadDanio)
     {
-        if (vidaActual > 0)
+        if (invulnerable || vidaActual <= 0)
+            return;
+
+        vidaActual -= cantidadDanio;
+        OnVidasCambiadas?.Invoke(vidaActual, vidaMaxima);
+
+        // Feedback visual y sonoro
+        StartCoroutine(InvulnerabilidadTemporal());
+        if (efectosSonido != null) efectosSonido.ReproducirDaño(); // Si tienes un sonido de daño
+
+        if (vidaActual <= 0)
         {
-            vidaActual -= cantidadDanio;
-            OnVidasCambiadas?.Invoke(vidaActual, vidaMaxima);
-            Debug.Log($"Jugador recibió daño. Vidas actuales: {vidaActual}");
-
-            if (vidaActual <= 0)
+            if (!anim.GetBool("dead")) // Evitar múltiples ejecuciones
             {
-                if (!anim.GetBool("dead")) // Evitar múltiples ejecuciones
-                {
-                    Debug.Log("Activando animación de muerte...");
-                    anim.SetBool("dead", true); // Activar animación de muerte
-
-                    // Desactivar todas las animaciones
-                    anim.SetBool("run", false);
-                    anim.SetBool("jump", false);
-                    anim.SetBool("climbing", false);
-                    anim.SetBool("hammer", false);
-
-                    // Desactivar el movimiento
-                    moveSpeed = 0f;
-                    jumpStrength = 0f;
-                    direction = Vector2.zero;
-                    playerRigidbody.linearVelocity = Vector2.zero;
-
-                    StartCoroutine(EsperarGameOver()); // Esperar antes de mostrar Game Over
-                }
+                anim.SetBool("dead", true);
+                anim.SetBool("run", false);
+                anim.SetBool("jump", false);
+                anim.SetBool("climbing", false);
+                anim.SetBool("hammer", false);
+                moveSpeed = 0f;
+                jumpStrength = 0f;
+                direction = Vector2.zero;
+                playerRigidbody.linearVelocity = Vector2.zero;
+                StartCoroutine(EsperarGameOver());
             }
-            else
-            {
-                Respawn(false); // Respawn sin restaurar vidas
-            }
+        }
+        else
+        {
+            Respawn(false);
         }
     }
 
-
+    private IEnumerator InvulnerabilidadTemporal()
+    {
+        invulnerable = true;
+        float tiempo = 0f;
+        while (tiempo < tiempoInvulnerabilidad)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(0.1f);
+            tiempo += 0.1f;
+        }
+        spriteRenderer.enabled = true;
+        invulnerable = false;
+    }
 
     private IEnumerator EsperarGameOver()
     {
@@ -261,9 +317,6 @@ public class Player : MonoBehaviour
         Time.timeScale = 0f; // Pausar el juego
         GameOver.Instance.MostrarGameOver(puntos); // Mostrar el menú de Game Over
     }
-
-
-
 
 
     public void Respawn(bool restaurarVidas)
@@ -291,15 +344,16 @@ public class Player : MonoBehaviour
     {
         if (tieneMartillo && collision.gameObject.CompareTag("Obstacle"))
         {
-            Destroy(collision.gameObject);
-            SumarPuntos(100); // Sumar puntos por enemigo eliminado
             Debug.Log($"Enemigo {collision.gameObject.name} destruido! Puntos sumados: 100");
+            SumarPuntos(100); // Sumar puntos por enemigo eliminado
+            Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             RecibirDanio(1);
         }
     }
+
 
 
     private void OnDrawGizmos()

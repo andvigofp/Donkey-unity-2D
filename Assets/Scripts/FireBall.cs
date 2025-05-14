@@ -24,9 +24,18 @@ public class FireBall : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.RecibirDanio(1); // Puedes ajustar la cantidad de daño si quieres
+                Animator anim = player.GetComponent<Animator>();
+                if (anim != null && anim.GetBool("hammer"))
+                {
+                    player.SumarPuntos(100); // Sumar puntos si Mario tiene el martillo
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    player.RecibirDanio(1); // Puedes ajustar la cantidad de daño si quieres
+                    Destroy(gameObject);
+                }
             }
-            Destroy(gameObject);
         }
         else if (other.CompareTag("InvisibleWall"))
         {

@@ -731,7 +731,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1353932894}
   m_HandleRect: {fileID: 1353932893}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2923,7 +2923,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\n\n\n\nCr\xE9ditos\n\nProgramaci\xF3n del Juego\n\nAndr\xE9s Fern\xE1ndez
     Pereira\n\nSprites y Assets\n\nZigurous\nMarioWiki\n\nAnimaciones\n\nAndr\xE9s
-    Fern\xE1ndez Pereira\n\nEfectos de Sonido\n\nNatymon\nleinarts\nmateopkp8\n\nM\xFAsica\n\nSubspaceAudio\nbenjobanjo\nKLY\n\nAgradecimientos
+    Fern\xE1ndez Pereira\n\nEfectos de Sonido\n\nNatymon\nleinarts\nmateopkp8\nEvilOldScratch\n\nM\xFAsica\n\nSubspaceAudio\nbenjobanjo\nKLY\n\nAgradecimientos
     Especiales\n\nLuis Canary\nKanarianDev\nBravePixelG\n(Por sus valiosos tutoriales
     y contenido educativo)\n\n\nGracias por jugar. \xA1Esperamos que disfruten del
     juego!"

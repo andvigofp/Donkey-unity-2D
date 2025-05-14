@@ -181,6 +181,8 @@ MonoBehaviour:
   jumpStrength: 4
   spawner: {fileID: 1200980556330727081, guid: bd002f7d1a6c13d43955892aedf86230, type: 3}
   spawnerFire: {fileID: 0}
+  numeroPuntosTexto: {fileID: 5075384191898839248, guid: 6ded700633e8bf949ad9549741ba1926, type: 3}
+  tiempoInvulnerabilidad: 1
 --- !u!95 &1137080945090425884
 Animator:
   serializedVersion: 7
@@ -230,3 +232,4 @@ MonoBehaviour:
   sonidoSalto: {fileID: 8300000, guid: ebe457818b2cd334c96935b609da0479, type: 3}
   sonidoMartillo: {fileID: 8300000, guid: 71d9d4d4b801d294da0af0d123eee552, type: 3}
   sonidoEscalera: {fileID: 8300000, guid: e3b5522c4186cfc46b245a9d4ced7735, type: 3}
+  "sonidoDa\xF1o": {fileID: 8300000, guid: ffb67d3f5318dfd4c9407678bfe3d0dd, type: 3}

@@ -64,6 +64,7 @@ public class FlyingEnemy : MonoBehaviour
                 Animator anim = player.GetComponent<Animator>();
                 if (anim != null && anim.GetBool("hammer"))
                 {
+                    player.SumarPuntos(100); // Sumar puntos si Mario tiene el martillo
                     Destroy(gameObject); // La abeja se destruye si Mario tiene el martillo
                 }
                 else

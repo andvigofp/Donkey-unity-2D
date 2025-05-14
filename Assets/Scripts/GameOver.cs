@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -11,13 +11,18 @@ public class GameOver : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        gameOverPanel.SetActive(false); // Ocultar el menú al inicio
+        gameOverPanel.SetActive(false); // Ocultar el menÃº al inicio
     }
 
     public void MostrarGameOver(int puntos)
     {
-        gameOverPanel.SetActive(true); // Mostrar el menú de Game Over
+        gameOverPanel.SetActive(true); // Mostrar el menÃº de Game Over
         GuardarPuntuacion(puntos);
+    }
+
+    public void ActualizarPuntosGameOver(int puntos)
+    {
+        textPuntos.text = "Puntos: " + puntos.ToString(); // Actualizar puntos en Game Over
     }
 
     private void GuardarPuntuacion(int puntos)

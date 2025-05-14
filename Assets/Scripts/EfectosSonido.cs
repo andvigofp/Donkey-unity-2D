@@ -8,6 +8,7 @@ public class EfectosSonido : MonoBehaviour
     [SerializeField] private AudioClip sonidoSalto;
     [SerializeField] private AudioClip sonidoMartillo;
     [SerializeField] private AudioClip sonidoEscalera;
+    [SerializeField] private AudioClip sonidoDaño;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +58,19 @@ public class EfectosSonido : MonoBehaviour
         else
         {
             Debug.LogWarning("Falta configurar el sonido de escalera o el AudioSource");
+        }
+    }
+
+    public void ReproducirDaño()
+    {
+        if (sonidoDaño != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(sonidoDaño);
+            Debug.Log("Reproduciendo sonido de daño");
+        }
+        else
+        {
+            Debug.LogWarning("Falta configurar el sonido de daño o el AudioSource");
         }
     }
 
