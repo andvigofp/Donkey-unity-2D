@@ -45,12 +45,13 @@ public class Player : MonoBehaviour
 
     [Header("Puntos")]
     private int puntos = 0; // Variable para almacenar los puntos
+    private int puntosMaximos = 0; // Variable para almacenar los puntos máximos
     public static event System.Action<int> OnPuntosCambiados;
 
     [Header("Spawner de fuego")]
     [SerializeField] private BarrelFireSpawner spawnerFire; // Asegúrate de asignarlo en el Inspector
 
-    public TMP_Text numeroPuntosTexto; // Referencia al texto en el Canvas
+    [SerializeField]public TextMeshProUGUI numeroPuntosTexto ; // Referencia al texto en el Canvas
 
     private bool invulnerable = false;
     public float tiempoInvulnerabilidad = 1.0f; // 1 segundo de invulnerabilidad
@@ -80,7 +81,10 @@ public class Player : MonoBehaviour
     {
         OnVidasCambiadas?.Invoke(vidaActual, vidaMaxima);
         OnPuntosCambiados?.Invoke(puntos);
+        numeroPuntosTexto.text = "00";
         ActualizarTextoPuntos(); // Mostrar puntos al inicio
+        puntos = 0; // Reiniciar puntos a 0 al inicio
+        puntosMaximos = PlayerPrefs.GetInt("PuntosMaximos", 0); // Cargar puntos máximos guardados
     }
 
     private void Update()
@@ -147,18 +151,11 @@ public class Player : MonoBehaviour
     public void SumarPuntos(int cantidad)
     {
         puntos += cantidad;
-        PlayerPrefs.SetInt("PuntosGuardados", puntos);
         OnPuntosCambiados?.Invoke(puntos);
         Debug.Log($"Puntos actuales: {puntos}"); // Verificar si los puntos se están sumando
         ActualizarTextoPuntos(); // Actualizar el nuevo texto en el nivel
-
-        // También actualizar los puntos en Game Over
-        if (GameOver.Instance != null)
-        {
-            GameOver.Instance.ActualizarPuntosGameOver(puntos);
-        }
+        // Ya no actualizamos el récord ni el GameOver aquí
     }
-
 
     private void ActualizarTextoPuntos()
     {
@@ -171,7 +168,6 @@ public class Player : MonoBehaviour
             Debug.LogError("NumeroPuntosTexto no está asignado en el Inspector.");
         }
     }
-
 
     private void FixedUpdate()
     {
@@ -252,7 +248,6 @@ public class Player : MonoBehaviour
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f); // Restaurar color normal
     }
 
-
     public void RecibirDanio(int cantidadDanio)
     {
         if (invulnerable || vidaActual <= 0)
@@ -314,10 +309,15 @@ public class Player : MonoBehaviour
 
         Debug.Log("Animación de muerte terminada, activando Game Over...");
 
+        // Comprobar si se supera el récord
+        if (puntos > puntosMaximos)
+        {
+            puntosMaximos = puntos;
+            PlayerPrefs.SetInt("PuntosMaximos", puntosMaximos);
+        }
         Time.timeScale = 0f; // Pausar el juego
-        GameOver.Instance.MostrarGameOver(puntos); // Mostrar el menú de Game Over
+        GameOver.Instance.MostrarGameOver(puntosMaximos); // Mostrar el menú de Game Over con el récord
     }
-
 
     public void Respawn(bool restaurarVidas)
     {
@@ -339,7 +339,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (tieneMartillo && collision.gameObject.CompareTag("Obstacle"))
@@ -353,8 +352,6 @@ public class Player : MonoBehaviour
             RecibirDanio(1);
         }
     }
-
-
 
     private void OnDrawGizmos()
     {

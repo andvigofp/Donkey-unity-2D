@@ -1027,6 +1027,10 @@ PrefabInstance:
       propertyPath: vidaMaxima
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7053423278124442559, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: numeroPuntosTexto
+      value: 
+      objectReference: {fileID: 1994965421}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1881,6 +1885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NumeroPuntosTexto
       objectReference: {fileID: 0}
+    - target: {fileID: 5075384191898839248, guid: 6ded700633e8bf949ad9549741ba1926, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5168013724230138316, guid: 6ded700633e8bf949ad9549741ba1926, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1971,6 +1979,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5168013724230138316, guid: 6ded700633e8bf949ad9549741ba1926, type: 3}
   m_PrefabInstance: {fileID: 1994965419}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1994965421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5075384191898839248, guid: 6ded700633e8bf949ad9549741ba1926, type: 3}
+  m_PrefabInstance: {fileID: 1994965419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &336808445942776703
 PrefabInstance:
   m_ObjectHideFlags: 0
