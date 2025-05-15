@@ -887,6 +887,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806063213}
   m_CullTransparentMesh: 1
+--- !u!114 &835481953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+  m_PrefabInstance: {fileID: 1505146885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776176cf2d7581c43a63725baeba22c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920957328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1048,10 @@ PrefabInstance:
       propertyPath: donkeyKong
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7053423278124442559, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
+      propertyPath: spawnerFire
+      value: 
+      objectReference: {fileID: 835481953}
     - target: {fileID: 7053423278124442559, guid: 15f3638be4daa9943bb6ffb89a19e85f, type: 3}
       propertyPath: numeroPuntosTexto
       value: 
@@ -1780,6 +1795,10 @@ PrefabInstance:
       propertyPath: minTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
+      propertyPath: fireBallPrefab
+      value: 
+      objectReference: {fileID: 610440237847419232, guid: 7ed23244b5d9ab143bcf151bbd91c0c7, type: 3}
     - target: {fileID: 3192236641705167340, guid: 63c0bce6cbc37c9439b945b5d5cdd39b, type: 3}
       propertyPath: tiempoEntreBolas
       value: 5

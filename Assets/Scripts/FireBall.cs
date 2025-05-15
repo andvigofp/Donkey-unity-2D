@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 5f;
+
+    public event Action OnDestroyed;
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke();
+    }
 
     private void Awake()
     {

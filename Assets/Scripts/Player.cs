@@ -333,9 +333,36 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("PuntosGuardados", puntos);
         Debug.Log("Jugador respawneado al punto de inicio.");
 
+        // Reiniciar el temporizador de todos los barriles de fuego activos
+        foreach (var barrelFire in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+        {
+            if (barrelFire.GetType().Name == "BarrelFire")
+            {
+                var method = barrelFire.GetType().GetMethod("ReiniciarDisparo");
+                if (method != null)
+                {
+                    method.Invoke(barrelFire, null);
+                }
+            }
+        }
+        // Destruir todas las bolas de fuego activas
+        foreach (var fireBall in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+        {
+            if (fireBall.GetType().Name == "FireBall")
+            {
+                Destroy(fireBall.gameObject);
+            }
+        }
+
         if (spawner != null)
         {
             spawner.ResetSpawner();
+        }
+
+        // 🔹 Reiniciar el Spawner solo cuando Mario reaparece
+        if (spawnerFire != null)
+        {
+            spawnerFire.ResetSpawner();
         }
     }
 
