@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1725761839386675565}
   - component: {fileID: 8334005165503964667}
   - component: {fileID: 2430307151951033125}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: barril_fuego
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -148,5 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireBallPrefab: {fileID: 610440237847419232, guid: 7ed23244b5d9ab143bcf151bbd91c0c7, type: 3}
-  tiempoAntesDeDisparar: 4
+  tiempoAntesDeDisparar: 3
   fireBallSpeed: 5
